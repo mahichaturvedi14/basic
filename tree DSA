@@ -1,0 +1,53 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+class TreeNode{
+    public:
+    int data;
+    TreeNode* left=NULL;
+    TreeNode* right=NULL;
+    TreeNode(int val){
+        this->data=val;
+        this->left=NULL;
+        this->right=NULL;
+    }
+};
+int IN(TreeNode* root){
+    if(root==NULL) return 0;
+    if(root->left==NULL && root->right==NULL) return 0;
+    
+    return 1+IN(root->left)+IN(root->right);
+}
+int LN(TreeNode* root){
+    if(root==NULL) return 0;
+    if(root->left==NULL && root->right==NULL) return 1;
+    
+    return LN(root->left)+LN(root->right);
+}
+int TN(TreeNode* root){
+    if(root==NULL) return 0;
+    if(root->left==NULL && root->right==NULL) return 1;
+    
+    return 1+TN(root->left)+TN(root->right);
+}
+int HT(TreeNode* root){
+    if(root==NULL) return 0;
+    if(root->left==NULL && root->right==NULL) return 1;
+    
+    return max(HT(root->left),HT(root->right));
+}
+
+int main() {
+	TreeNode* root=new TreeNode(40);
+	root->left=new TreeNode(30);
+	root->right= new TreeNode(50);
+	root->left->left=new TreeNode(10);
+	root->left->right=new TreeNode(20);
+	root->right->left=new TreeNode(60);
+	root->right->right= new TreeNode(70);
+	cout<<"Internal Node : "<<IN(root)<<endl;
+	cout<<"Leaf Node : "<<LN(root)<<endl;
+	cout<<"Total Node: "<<TN(root)<<endl;
+	cout<<"height: "<<HT(root)<<endl;
+    
+}
