@@ -36,7 +36,24 @@ int HT(TreeNode* root){
     
     return 1+max(HT(root->left),HT(root->right));
 }
-
+void preorder(TreeNode* root){
+    if(root==NULL) return;
+    cout<<root->data<<" ";
+    preorder(root->left);
+    preorder(root->right);
+}
+void inorder(TreeNode* root){
+    if(root==NULL) return;
+    inorder(root->left);
+    cout<<root->data<<" ";
+    inorder(root->right);
+}
+void postorder(TreeNode* root){
+    if(root==NULL) return;
+        inorder(root->left);
+        inorder(root->right);
+        cout<<root->data<<" ";
+}
 int main() {
 	TreeNode* root=new TreeNode(40);
 	root->left=new TreeNode(30);
@@ -45,9 +62,19 @@ int main() {
 	root->left->right=new TreeNode(20);
 	root->right->left=new TreeNode(60);
 	root->right->right= new TreeNode(70);
+	root->right->left->left=new TreeNode(90);
 	cout<<"Internal Node : "<<IN(root)<<endl;
 	cout<<"Leaf Node : "<<LN(root)<<endl;
 	cout<<"Total Node: "<<TN(root)<<endl;
 	cout<<"height: "<<HT(root)<<endl;
+	cout<<"Preorder: ";
+	preorder(root);
+	cout<<endl;
+	cout<<"Inorder: ";
+	inorder(root);
+	cout<<endl;
+	cout<<"postorder: ";
+	postorder(root);
+	
     
 }
